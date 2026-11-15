@@ -1,0 +1,662 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Elnur Mammadov — CV</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#fbfaf6;
+    --ink:#0e1116;
+    --ink-2:#262a31;
+    --muted:#6a6f78;
+    --rule-2:#e2dfd5;
+    --accent:#b54a1d;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:#cfccc1;color:var(--ink-2);font-family:"Inter",system-ui,sans-serif;-webkit-font-smoothing:antialiased;font-feature-settings:"ss01","cv11";}
+  .stage{padding:24px 16px;display:flex;flex-direction:column;align-items:center;gap:24px;}
+
+  .page{
+    width:210mm;
+    height:297mm;
+    background:var(--paper);
+    box-shadow:0 1px 2px rgba(0,0,0,.04), 0 24px 60px -20px rgba(20,22,30,.25);
+    padding:10mm 13mm 8.5mm 13mm;
+    position:relative;
+    font-size:8.8pt;
+    line-height:1.36;
+    color:var(--ink-2);
+    display:flex;flex-direction:column;
+    overflow:hidden;
+  }
+
+  /* HEADER */
+  .head{
+    display:grid;grid-template-columns:1fr auto;gap:20px;
+    align-items:end;padding-bottom:6px;
+    border-bottom:1.5px solid var(--ink);
+  }
+  .name{
+    font-family:"Instrument Serif",serif;font-weight:400;
+    font-size:35pt;line-height:.92;letter-spacing:-.015em;
+    color:var(--ink);margin:0;
+  }
+  .name em{font-style:italic;color:var(--accent);}
+  .role{font-size:8pt;text-transform:uppercase;letter-spacing:.22em;color:var(--ink-2);margin-top:4px;font-weight:500;}
+  .target{font-size:7.6pt;color:var(--muted);margin-top:2px;letter-spacing:.04em;}
+  .contact{
+    text-align:right;font-size:8pt;color:var(--ink-2);
+    line-height:1.5;white-space:nowrap;display:flex;flex-direction:column;gap:1px;
+  }
+  .contact a{color:inherit;text-decoration:none;}
+  .contact .l{
+    font-family:"JetBrains Mono",monospace;font-size:6.8pt;color:var(--muted);
+    letter-spacing:.06em;text-transform:uppercase;margin-right:7px;
+  }
+
+  /* METRIC STRIP */
+  .strip{
+    display:grid;grid-template-columns:repeat(4,1fr);
+    margin-top:6px;padding:6px 0;
+    border-bottom:1px solid var(--rule-2);
+  }
+  .strip .cell{padding:0 14px;border-right:1px solid var(--rule-2);}
+  .strip .cell:first-child{padding-left:0;}
+  .strip .cell:last-child{border-right:0;padding-right:0;}
+  .strip .num{
+    font-family:"Instrument Serif",serif;font-size:19pt;font-weight:400;
+    line-height:1;color:var(--ink);letter-spacing:-.02em;
+  }
+  .strip .num em{font-style:italic;color:var(--accent);font-size:11pt;}
+  .strip .num sup{font-size:10pt;color:var(--muted);font-style:italic;}
+  .strip .lbl{font-size:7.1pt;color:var(--muted);margin-top:3px;line-height:1.28;}
+  .strip .lbl b{color:var(--ink);font-weight:600;}
+
+  /* PROFILE */
+  .profile{
+    margin-top:6px;font-size:8.7pt;line-height:1.4;color:var(--ink-2);
+    text-wrap:pretty;
+  }
+  .profile strong{color:var(--ink);font-weight:600;}
+
+  /* BODY GRID */
+  .body{
+    display:grid;grid-template-columns:1.5fr 1fr;gap:10px 20px;
+    margin-top:8px;flex:1;min-height:0;
+  }
+  .col{display:flex;flex-direction:column;gap:8px;}
+
+  /* SECTION HEADERS */
+  .h{display:flex;align-items:baseline;gap:10px;margin-bottom:3px;}
+  .h h2{
+    font-size:7.8pt;font-weight:700;text-transform:uppercase;
+    letter-spacing:.22em;color:var(--ink);margin:0;
+  }
+  .h .num{font-family:"JetBrains Mono",monospace;font-size:7pt;color:var(--muted);}
+  .h .rule{flex:1;height:1px;background:var(--ink);}
+
+  /* EXPERIENCE */
+  .exp{display:flex;flex-direction:column;}
+  .item{padding:4px 0;border-top:1px solid var(--rule-2);}
+  .item:first-child{border-top:0;padding-top:0;}
+  .item .row1{display:flex;justify-content:space-between;align-items:baseline;gap:12px;}
+  .item .title{font-weight:600;color:var(--ink);font-size:8.8pt;line-height:1.22;}
+  .item .when{
+    font-family:"JetBrains Mono",monospace;font-size:6.9pt;color:var(--muted);
+    white-space:nowrap;flex-shrink:0;letter-spacing:.02em;
+  }
+  .item .org{
+    color:var(--muted);margin-top:0px;
+    font-family:"Instrument Serif",serif;font-style:italic;font-size:8.8pt;line-height:1.25;
+  }
+  .item ul{margin:2px 0 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:1px;}
+  .item ul li{
+    position:relative;padding-left:11px;font-size:8pt;color:var(--ink-2);line-height:1.34;
+  }
+  .item ul li::before{
+    content:"";position:absolute;left:0;top:.55em;width:7px;height:1px;background:var(--ink);
+  }
+
+  /* SKILLS */
+  .skills{display:flex;flex-direction:column;gap:3px;}
+  .skill{display:grid;grid-template-columns:68px 1fr;gap:10px;align-items:baseline;}
+  .skill .k{
+    font-family:"JetBrains Mono",monospace;font-size:6.8pt;text-transform:uppercase;
+    letter-spacing:.08em;color:var(--muted);padding-top:1px;
+  }
+  .skill .v{font-size:8.2pt;color:var(--ink);line-height:1.4;}
+  .skill .v b{font-weight:600;}
+
+  /* AWARDS */
+  .awards{display:flex;flex-direction:column;}
+  .award{
+    display:grid;grid-template-columns:auto 1fr auto;gap:3px 14px;
+    padding:4.5px 0;border-top:1px solid var(--rule-2);
+    align-items:baseline;
+  }
+  .award:first-child{border-top:0;padding-top:0;}
+  .award .yr{
+    font-family:"JetBrains Mono",monospace;font-size:7pt;color:var(--muted);
+    letter-spacing:.04em;white-space:nowrap;
+  }
+  .award .ttl{font-size:9pt;color:var(--ink);line-height:1.35;}
+  .award .ttl b{font-weight:600;}
+  .award .ttl .sub{
+    color:var(--muted);font-family:"Instrument Serif",serif;
+    font-style:italic;font-size:9.4pt;display:block;margin-top:1px;
+  }
+  .award .place{
+    font-family:"JetBrains Mono",monospace;font-size:7.2pt;color:var(--accent);
+    text-transform:uppercase;letter-spacing:.06em;white-space:nowrap;text-align:right;
+    align-self:start;padding-top:2px;
+  }
+
+  /* LANGUAGES */
+  .langs{display:grid;grid-template-columns:repeat(2,1fr);gap:2px 16px;font-size:8.2pt;}
+  .langs div{display:flex;justify-content:space-between;gap:8px;}
+  .langs span:first-child{color:var(--ink);}
+  .langs span:last-child{color:var(--muted);font-size:7.6pt;}
+
+  /* EDU compact */
+  .edu-block{display:flex;flex-direction:column;gap:5px;}
+  .edu-row{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:baseline;}
+  .edu-row .t{font-weight:600;color:var(--ink);font-size:9pt;}
+  .edu-row .w{font-family:"JetBrains Mono",monospace;font-size:7pt;color:var(--muted);white-space:nowrap;}
+  .edu-row .o{
+    grid-column:1 / -1;color:var(--muted);
+    font-family:"Instrument Serif",serif;font-style:italic;font-size:9pt;margin-top:0;
+  }
+
+  /* Conferences */
+  .conflist{display:flex;flex-direction:column;}
+  .confitem{
+    display:grid;grid-template-columns:1fr auto;gap:8px;
+    padding:4px 0;border-top:1px solid var(--rule-2);align-items:baseline;
+  }
+  .confitem:first-child{border-top:0;padding-top:0;}
+  .confitem .t{font-size:8.4pt;color:var(--ink);font-weight:500;line-height:1.3;}
+  .confitem .o{
+    color:var(--muted);font-family:"Instrument Serif",serif;
+    font-style:italic;font-size:8.8pt;display:block;margin-top:1px;font-weight:400;line-height:1.3;
+  }
+  .confitem .w{font-family:"JetBrains Mono",monospace;font-size:7pt;color:var(--muted);white-space:nowrap;}
+
+  /* PAGE 2 — awards single column */
+  .page-2 .awards-grid{
+    display:grid;grid-template-columns:1fr 1fr;gap:0 32px;
+    margin-top:6px;
+  }
+  .page-2 .head-2{
+    display:flex;justify-content:space-between;align-items:baseline;gap:20px;
+    padding-bottom:8px;border-bottom:1.5px solid var(--ink);
+  }
+  .page-2 .head-2 .ttl{
+    font-family:"Instrument Serif",serif;font-size:24pt;
+    color:var(--ink);line-height:1;
+  }
+  .page-2 .head-2 .ttl em{font-style:italic;color:var(--accent);}
+  .page-2 .head-2 .meta{
+    font-family:"JetBrains Mono",monospace;font-size:7.4pt;
+    color:var(--muted);text-transform:uppercase;letter-spacing:.1em;
+    text-align:right;line-height:1.5;
+  }
+
+  /* FOOTER */
+  .foot{
+    margin-top:auto;padding-top:6px;border-top:1px solid var(--rule-2);
+    display:flex;justify-content:space-between;
+    font-family:"JetBrains Mono",monospace;font-size:6.6pt;color:var(--muted);
+    letter-spacing:.08em;text-transform:uppercase;
+  }
+
+  .site-nav{
+    position:sticky;top:0;z-index:50;
+    background:#0e1116;color:#dfe3eb;border-bottom:1px solid #262c38;
+    padding:8px 18px;display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;
+    font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+  }
+  .site-nav .brand{color:#fff;font-weight:700;margin-right:10px;text-decoration:none;}
+  .site-nav a.nav-pill{color:#c8cdd6;text-decoration:none;padding:4px 10px;border:1px solid #262c38;background:#151921;}
+  .site-nav a.nav-pill:hover{color:#fff;border-color:#e89a6f;}
+  .site-nav a.nav-pill.active{color:#fff;background:#b54a1d;border-color:#b54a1d;}
+
+  @page{size:A4;margin:0;}
+  @media print{
+    html,body{background:#fff;}
+    .site-nav{display:none !important;}
+    .stage,.stage-inner{padding:0 !important;gap:0 !important;transform:none !important;width:auto !important;}
+    .page{height:296mm;max-height:296mm;box-shadow:none;break-after:page;page-break-after:always;}
+    .page:last-child{break-after:auto !important;page-break-after:auto !important;}
+  }
+</style>
+</head>
+<body>
+<nav class="site-nav" aria-label="Primary navigation">
+  <a class="brand" href="./">Elnur Mammadov</a>
+  <a class="nav-pill" href="./">Portfolio (Web)</a>
+  <a class="nav-pill active" href="cv.html">CV (Web)</a>
+  <a class="nav-pill" href="Elnur_Mammadov_CV_TeX.pdf">CV PDF (LaTeX)</a>
+  <a class="nav-pill" href="Elnur_Mammadov_CV.pdf">CV PDF (Editorial)</a>
+  <a class="nav-pill" href="Elnur_Mammadov_Portfolio_2026.pdf">Portfolio PDF</a>
+  <a class="nav-pill" href="https://github.com/mammadow">GitHub</a>
+</nav>
+<div class="stage">
+
+<!-- =========== PAGE 1 =========== -->
+<article class="page" data-screen-label="01 Page 1 — Profile & Experience">
+
+  <header class="head">
+    <div>
+      <h1 class="name">Elnur <em>Mammadov</em></h1>
+      <div class="role">Computer Engineering · AI, Autonomy &amp; Systems</div>
+      <div class="target">B.Sc. 3<sup>rd</sup> Year (Fall-3 GPA 97.40 / 100) · Robotics, ML &amp; Embedded HAL</div>
+    </div>
+    <div class="contact">
+      <div><span class="l">email</span><a href="mailto:mammadow.elnur@gmail.com">mammadow.elnur@gmail.com</a></div>
+      <div><span class="l">github</span><a href="https://github.com/mammadow">github.com/mammadow</a></div>
+      <div><span class="l">linkedin</span><a href="https://www.linkedin.com/in/elnurmammadovv/">linkedin.com/in/elnurmammadovv</a></div>
+      <div><span class="l">kaggle</span><a href="https://www.kaggle.com/mammadovelnur">kaggle.com/mammadovelnur</a></div>
+      <div><span class="l">based</span>Baku / Khankendi, Azerbaijan</div>
+      <div><span class="l">born</span>4 September 2006</div>
+    </div>
+  </header>
+
+  <div class="strip">
+    <div class="cell">
+      <div class="num">3<sup>rd</sup></div>
+      <div class="lbl"><b>TEKNOFEST ’26 · UAV · WRO</b><br/>NSosyal, Turkic UAV &amp; Future Eng.</div>
+    </div>
+    <div class="cell">
+      <div class="num">100<em>%</em></div>
+      <div class="lbl"><b>Holberton ML scholarship</b><br/>1<sup>st</sup> &amp; only QU recipient</div>
+    </div>
+    <div class="cell">
+      <div class="num" style="font-size:18pt;">ICPC</div>
+      <div class="lbl"><b>NEERC Finals ’25</b><br/>Honorable Mention · QU 1</div>
+    </div>
+    <div class="cell">
+      <div class="num">1<sup>st</sup></div>
+      <div class="lbl"><b>Kaggle ML3 competitions</b><br/>Housing, Plants &amp; Top-2 TED</div>
+    </div>
+  </div>
+
+  <p class="profile">
+    Third-year Computer Engineering student at <strong>Qarabağ University</strong> (Fall-3 GPA <strong>97.40/100</strong>), with six years of hands-on competition and engineering experience across <strong>robotics, autonomy, machine learning and systems software</strong> — from TEKNOFEST 2026, Turkic World UAV and World Robot Olympiad medals to ICPC Northern Eurasia Finals (<strong>QU&nbsp;1</strong>). First and only QU student to earn a <strong>100&nbsp;% Holberton Machine&nbsp;Learning</strong> scholarship.
+  </p>
+
+  <div class="body">
+
+    <!-- LEFT -->
+    <div class="col">
+
+      <section>
+        <div class="h"><span class="num">01</span><h2>Experience</h2><span class="rule"></span></div>
+        <div class="exp">
+
+          <div class="item">
+            <div class="row1">
+              <div class="title">Machine Learning Engineer — <a href="https://github.com/Chevir-App-Development-Team/chevir-app-vers-1.0" style="color:inherit;text-decoration:none;">Chevir</a></div>
+              <div class="when">2026 — present</div>
+            </div>
+            <div class="org">Real-time AzSL sign-language platform · TEKNOFEST 2026 3<sup>rd</sup> place · <a href="https://chevirapp.com" style="color:inherit;">chevirapp.com</a></div>
+            <ul>
+              <li>Authored PyTorch depthwise Conv1D + Transformer ONNX pipeline (1.7M params) running client-side in browser WASM (0.927 continuous F1 / 0.105 WER on AzSLD; 0.903 macro-F1 across 756 signs).</li>
+              <li>Built 3,173-sign Azerbaijani NLP + two-bone IK VRM avatar synthesis and automated PR regression gates.</li>
+            </ul>
+          </div>
+
+          <div class="item">
+            <div class="row1">
+              <div class="title">HAL Team Lead &amp; Systems Software Engineer — AZEROS</div>
+              <div class="when">2026 — present</div>
+            </div>
+            <div class="org">Independent OS &amp; embedded engineering initiative · Azerbaijan</div>
+            <ul>
+              <li>Leading Hardware Abstraction Layer (HAL) design and systems software architecture for bare-metal and embedded integration.</li>
+            </ul>
+          </div>
+
+          <div class="item">
+            <div class="row1">
+              <div class="title">Machine Learning Trainee — Holberton School</div>
+              <div class="when">Nov 2025 — present</div>
+            </div>
+            <div class="org">100% scholarship · first &amp; only Qarabağ University student admitted</div>
+            <ul>
+              <li>Intensive project-based ML track covering supervised/unsupervised learning, deep learning (PyTorch, TensorFlow/Keras), NLP, RL and MLOps.</li>
+              <li>Placed <strong>1<sup>st</sup></strong> in HLBT Housing Prices &amp; HLBN Plants and <strong>Top 2</strong> in HLBT TED on Kaggle.</li>
+            </ul>
+          </div>
+
+          <div class="item">
+            <div class="row1">
+              <div class="title">Banking Operations Intern — ABB (Azerbaijan)</div>
+              <div class="when">Jul 2025</div>
+            </div>
+            <div class="org">One-month internship program · Baku</div>
+            <ul>
+              <li>Completed a structured 1-month internship at Azerbaijan’s largest bank across core operations and workflows.</li>
+            </ul>
+          </div>
+
+          <div class="item">
+            <div class="row1">
+              <div class="title">Competitive Programmer — ICPC Azerbaijan Regional Camp</div>
+              <div class="when">Aug 2025</div>
+            </div>
+            <div class="org">Train &amp; compete format · ICPC Azerbaijan regional · team QU 1</div>
+            <ul>
+              <li>Qualified team <strong>QU 1</strong> for <strong>ICPC Northern Eurasia Finals</strong> and earned <strong>Honorable Mention</strong> at the 2025 finals (Dec&nbsp;15–17).</li>
+            </ul>
+          </div>
+
+          <div class="item">
+            <div class="row1">
+              <div class="title">Team Lead — Robotics &amp; Programming</div>
+              <div class="when">2024 — present</div>
+            </div>
+            <div class="org">Qarabağ University · Computer Engineering</div>
+            <ul>
+              <li>Formed and led engineering teams representing Qarabağ University across TEKNOFEST, Turkic World UAV, WRO and Technoxian.</li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+      <section>
+        <div class="h"><span class="num">02</span><h2>Publications</h2><span class="rule"></span></div>
+        <div class="conflist">
+          <div class="confitem">
+            <div><span class="t"><b>A Comparative Analysis of LSTM and Transformers for Sign Language Recognition</b></span><span class="o">ISLR benchmark research · “Engineer of the Future” I Student Conference, Qarabağ University</span></div>
+            <div class="w">Apr 2026</div>
+          </div>
+          <div class="confitem">
+            <div><span class="t"><b>Transformation of Programming in the Age of AI</b></span><span class="o">Position paper · “Engineer of the Future” I Student Conference, Qarabağ University</span></div>
+            <div class="w">Apr 2026</div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- RIGHT -->
+    <div class="col">
+
+      <section>
+        <div class="h"><span class="num">03</span><h2>Education</h2><span class="rule"></span></div>
+        <div class="edu-block">
+          <div class="edu-row">
+            <span class="t">B.Sc. Computer Engineering</span>
+            <span class="w">2024 — 2028</span>
+            <span class="o">Qarabağ University · 3<sup>rd</sup> year · Fall-3 GPA 97.40/100 (OS 97, DSA I 98, Math 92)</span>
+          </div>
+          <div class="edu-row">
+            <span class="t">Machine Learning Track</span>
+            <span class="w">Nov 2025 — present</span>
+            <span class="o">Holberton School · 100% scholarship</span>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="h"><span class="num">04</span><h2>Conferences</h2><span class="rule"></span></div>
+        <div class="conflist">
+          <div class="confitem">
+            <div><span class="t">Attendee — “Engineer of the Future” Student Conf.</span><span class="o">Qarabağ University · presented two papers</span></div>
+            <div class="w">Apr 2026</div>
+          </div>
+          <div class="confitem">
+            <div><span class="t">Delegate — “Sustainable Development Strategy” Conf.</span><span class="o">Representing Qarabağ University</span></div>
+            <div class="w">Dec 2025</div>
+          </div>
+          <div class="confitem">
+            <div><span class="t">Exhibitor — AgroCaspian Agritech Expo</span><span class="o">Baku · Qarabağ University booth</span></div>
+            <div class="w">Jun 2025</div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="h"><span class="num">05</span><h2>Skills &amp; Open Source</h2><span class="rule"></span></div>
+        <div class="skills">
+          <div class="skill"><div class="k">Languages</div><div class="v"><b>C++</b>, Python, Rust, C (C17), JavaScript, SQL</div></div>
+          <div class="skill"><div class="k">AI / ML</div><div class="v">PyTorch, ONNX Runtime, TensorFlow/Keras, scikit-learn, NumPy, Pandas, CNN/RNN/Transformers, NLP</div></div>
+          <div class="skill"><div class="k">Systems</div><div class="v">HAL / EC register I/O, Win32, WRO autonomy (PID/computer vision), combat robotics</div></div>
+          <div class="skill"><div class="k">Algorithms</div><div class="v">ICPC-level data structures, DP, graphs, geometry</div></div>
+          <div class="skill"><div class="k">Projects</div><div class="v"><a href="https://github.com/Chevir-App-Development-Team/chevir-app-vers-1.0" style="color:inherit;">Chevir AzSL</a> · <a href="https://github.com/NEDrobotics/WRO2025-NED" style="color:inherit;">WRO2025-NED</a> · <a href="https://github.com/mammadow/win-anomaly-monitor" style="color:inherit;">win-anomaly-monitor</a> · <a href="https://github.com/mammadow/predator-phn16-71-mode-led" style="color:inherit;">predator-led</a> · <a href="https://github.com/mammadow/keychron-battery-tray" style="color:inherit;">keychron-tray</a> · <a href="https://github.com/mammadow/mangala" style="color:inherit;">mangala</a></div></div>
+          <div class="skill"><div class="k">Tools</div><div class="v">Git, GitHub Actions, Linux/Bash, Docker</div></div>
+        </div>
+      </section>
+
+      <section>
+        <div class="h"><span class="num">06</span><h2>Languages</h2><span class="rule"></span></div>
+        <div class="langs">
+          <div><span>Azerbaijani</span><span>Native</span></div>
+          <div><span>Turkish</span><span>Professional</span></div>
+          <div><span>English</span><span>Professional</span></div>
+          <div><span>Russian</span><span>Beginner</span></div>
+        </div>
+      </section>
+
+      <section>
+        <div class="h"><span class="num">07</span><h2>Interests</h2><span class="rule"></span></div>
+        <div style="font-size:8.4pt;line-height:1.5;color:var(--ink-2);">AI &amp; autonomous systems, UAV technologies, robotics &amp; embedded engineering, innovation, computer science, and defense-tech applications.</div>
+      </section>
+
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>Elnur Mammadov · Curriculum Vitae · 2026</span>
+    <span>page 1 / 2</span>
+  </div>
+
+</article>
+
+
+<!-- =========== PAGE 2 =========== -->
+<article class="page page-2" data-screen-label="02 Page 2 — Awards & Competitions">
+
+  <header class="head-2">
+    <div>
+      <div class="ttl">Awards &amp; <em>Competitions</em></div>
+      <div style="font-family:Instrument Serif,serif;font-style:italic;color:var(--muted);font-size:11pt;margin-top:2px;">
+        Elnur Mammadov — complete record, 2018 – 2026
+      </div>
+    </div>
+    <div class="meta">
+      <div>20 entries</div>
+      <div>reverse-chronological</div>
+    </div>
+  </header>
+
+  <section style="margin-top:14px;">
+    <div class="h"><span class="num">2024 — 2026</span><h2>Recent</h2><span class="rule"></span></div>
+    <div class="awards">
+
+      <div class="award">
+        <div class="yr">Oct 2026</div>
+        <div class="ttl"><b>TEKNOFEST NSosyal İnovasyon Yarışması</b><span class="sub">Team Chevir — Real-time AzSL sign-language translation platform</span></div>
+        <div class="place">3<sup>rd</sup> place</div>
+      </div>
+
+      <div class="award">
+        <div class="yr">May 2026</div>
+        <div class="ttl"><b>Turkic World UAV Competition</b><span class="sub">Gebze Technical University · Organization of Turkic States · Gebze, Türkiye</span></div>
+        <div class="place">3<sup>rd</sup> place</div>
+      </div>
+
+      <div class="award">
+        <div class="yr">2026</div>
+        <div class="ttl"><b>Holberton Kaggle ML3 Series (Housing · Plants · TED)</b><span class="sub">HLBT Baku Housing Prices (1<sup>st</sup>) · HLBN Plants (1<sup>st</sup>) · HLBT TED (Top 2)</span></div>
+        <div class="place">1<sup>st</sup> / Top 2</div>
+      </div>
+
+      <div class="award">
+        <div class="yr">Feb 2026</div>
+        <div class="ttl"><b>2<sup>nd</sup> Sumgayit Cup — Inter-University Programming Contest</b><span class="sub">Innovation &amp; Digital Development Agency · Sumgayit Innovation Hub · ICPC Azerbaijan</span></div>
+        <div class="place">participant</div>
+      </div>
+
+      <div class="award">
+        <div class="yr">Dec 2025</div>
+        <div class="ttl"><b>2025 ICPC Northern Eurasia Finals</b><span class="sub">QU 1 · December 15–17, 2025</span></div>
+        <div class="place">Honorable Mention</div>
+      </div>
+
+      <div class="award">
+        <div class="yr">Sep 2025</div>
+        <div class="ttl"><b>VIII Republic Robot Olympiad — Future Engineers</b><span class="sub">National stage of World Robot Olympiad · Baku</span></div>
+        <div class="place">3<sup>rd</sup> place</div>
+      </div>
+
+      <div class="award">
+        <div class="yr">Jun 2025</div>
+        <div class="ttl"><b>Technoxian — World Robot Championship · BotsCombat 15&nbsp;kg</b><span class="sub">Azerbaijan final stage · Qarabağ University</span></div>
+        <div class="place">3<sup>rd</sup> place</div>
+      </div>
+
+      <div class="award">
+        <div class="yr">Apr 2025</div>
+        <div class="ttl"><b>Sumgayit Cup — Inter-University Programming Contest</b><span class="sub">First nationwide competitive-programming cup · team result</span></div>
+        <div class="place">3<sup>rd</sup> place</div>
+      </div>
+
+    </div>
+  </section>
+
+  <section style="margin-top:14px;">
+    <div class="h" style="gap: 10px; margin: 0px 0px 8px"><span class="num">2018 — 2024</span><h2>School-Era Achievements</h2><span class="rule"></span></div>
+    <div class="awards">
+
+      <div class="award">
+        <div class="yr">May 2024</div>
+        <div class="ttl"><b>“IT sahəsindəki yolum” — Web Programming Competition</b></div>
+        <div class="place">awarded</div>
+      </div>
+
+      <div class="award">
+        <div class="yr">Apr 2023</div>
+        <div class="ttl"><b>FIRST LEGO League Challenge 2022/23 — Robot Design</b><span class="sub">Azerbaijan tournament</span></div>
+        <div class="place">1<sup>st</sup> place</div>
+      </div>
+
+      <div class="award">
+        <div class="yr">Feb 2023</div>
+        <div class="ttl"><b>XII Republic “Scientists of Tomorrow” Contest — Engineering</b><span class="sub">Project presentation, grades 9–11</span></div>
+        <div class="place">finalist</div>
+      </div>
+
+      <div class="award">
+        <div class="yr">Dec 2022</div>
+        <div class="ttl"><b>International STEAM Azerbaijan Festival</b><span class="sub">Baku, 5–9 December 2022 · Ministry of Science &amp; Education</span></div>
+        <div class="place">bronze medal</div>
+      </div>
+
+      <div class="award">
+        <div class="yr">Sep 2022</div>
+        <div class="ttl"><b>Eurasian Skills Competition</b><span class="sub">Eurasian Skills Development Programme</span></div>
+        <div class="place">silver medal</div>
+      </div>
+
+      <div class="award">
+        <div class="yr">Sep 2022</div>
+        <div class="ttl"><b>V Robot Olympiad of Azerbaijan</b><span class="sub">National stage</span></div>
+        <div class="place">certificate</div>
+      </div>
+
+      <div class="award">
+        <div class="yr">Feb 2022</div>
+        <div class="ttl"><b>STEAM Azerbaijan — Makerthon</b><span class="sub">High-performance award</span></div>
+        <div class="place">awarded</div>
+      </div>
+
+      <div class="award">
+        <div class="yr">Dec 2021</div>
+        <div class="ttl"><b>STEAM Azerbaijan Festival</b><span class="sub">Ministry of Education</span></div>
+        <div class="place">2<sup>nd</sup> place</div>
+      </div>
+
+      <div class="award">
+        <div class="yr">Dec 2021</div>
+        <div class="ttl"><b>“Step to Digital Future” Programming Contest</b><span class="sub">Grades 8–9 category · Ministry of Education</span></div>
+        <div class="place">awarded</div>
+      </div>
+
+      <div class="award">
+        <div class="yr">Oct 2021</div>
+        <div class="ttl"><b>Robo Race Challenge — team SUMracers</b><span class="sub">ROBO CROSS</span></div>
+        <div class="place">5<sup>th</sup> prize</div>
+      </div>
+
+      <div class="award">
+        <div class="yr">Jul 2021</div>
+        <div class="ttl"><b>IV Azerbaijan Robot Olympiad — Junior Advanced</b><span class="sub">Ministry of Youth and Sport</span></div>
+        <div class="place">3<sup>rd</sup> place</div>
+      </div>
+
+      <div class="award">
+        <div class="yr">May 2018</div>
+        <div class="ttl"><b>I Lutfi Zadeh Logic Olympiad</b><span class="sub">Ministry of Education of the Republic of Azerbaijan</span></div>
+        <div class="place">1<sup>st</sup> place</div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="foot">
+    <span>Elnur Mammadov · Curriculum Vitae · 2026 · References available on request</span>
+    <span>page 2 / 2</span>
+  </div>
+
+</article>
+
+</div>
+<script>
+  // Scale-to-fit on narrow viewports (mobile)
+  (function(){
+    const stage = document.querySelector('.stage');
+    if(!stage) return;
+    // wrap stage children in an inner div for scaling
+    const inner = document.createElement('div');
+    inner.className = 'stage-inner';
+    inner.style.transformOrigin = 'top center';
+    inner.style.display = 'flex';
+    inner.style.flexDirection = 'column';
+    inner.style.alignItems = 'center';
+    inner.style.gap = getComputedStyle(stage).gap || '24px';
+    while(stage.firstChild){ inner.appendChild(stage.firstChild); }
+    stage.appendChild(inner);
+
+    const PAGE_W_MM = 210;
+    const MM_PX = 96/25.4;
+    const pageWpx = PAGE_W_MM * MM_PX;
+
+    function fit(){
+      const vw = document.documentElement.clientWidth;
+      const padding = 16;
+      const target = vw - padding*2;
+      if(target >= pageWpx){
+        inner.style.transform = '';
+        inner.style.width = '';
+        return;
+      }
+      const s = target / pageWpx;
+      inner.style.transform = `scale(${s})`;
+      inner.style.transformOrigin = 'top center';
+      inner.style.width = pageWpx + 'px';
+    }
+    fit();
+    window.addEventListener('resize', fit);
+
+    // print: undo transform and gap
+    window.addEventListener('beforeprint', () => { inner.style.transform = ''; inner.style.width=''; inner.style.gap='0'; });
+  })();
+</script>
+</body>
+</html>
