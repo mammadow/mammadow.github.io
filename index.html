@@ -13,7 +13,7 @@
 <nav class="site-nav" aria-label="Primary navigation">
   <a class="brand" href="./">Elnur Mammadov</a>
   <a class="nav-pill active" href="./">Portfolio (Web)</a>
-  <a class="nav-pill" href="cv.html">CV (Web)</a>
+  <a class="nav-pill " href="cv.html">CV (Web)</a>
   <a class="nav-pill" href="Elnur_Mammadov_CV_TeX.pdf">CV PDF (LaTeX)</a>
   <a class="nav-pill" href="Elnur_Mammadov_CV.pdf">CV PDF (Editorial)</a>
   <a class="nav-pill" href="Elnur_Mammadov_Portfolio_2026.pdf">Portfolio PDF</a>
@@ -862,54 +862,54 @@ speed      = max(MIN_SPEED, BASE_SPEED − k·|out|)</pre>
 
   <div class="project-tags">
     <span class="tag solid">Machine Learning</span>
-    <span class="tag">Tabular Regression</span>
-    <span class="tag">Plant Classification</span>
-    <span class="tag">Gradient Boosting &amp; CV</span>
-    <span class="tag accent">🥇 1<sup>st</sup> Housing · 🥇 1<sup>st</sup> Plants · 🥈 Top 2 TED</span>
+    <span class="tag">EfficientNetV2-S + TTA</span>
+    <span class="tag">Stacked GBDT &amp; TabPFN</span>
+    <span class="tag">5-Fold CV</span>
+    <span class="tag accent">🥇 1<sup>st</sup> Plants (0.9565 F1) · 🥇 1<sup>st</sup> Housing · 🥈 Top 2 TED (0.0357 MSLE)</span>
   </div>
 
   <p class="lead">
     Three cohort-internal Kaggle Community competitions run by Holberton School
-    Baku as part of the Machine Learning track — testing feature engineering,
-    cross-validation discipline, and generalizing cleanly onto unseen test splits.
+    Baku (ML3) — pairing vision ensembles, two-level tabular stacking, and
+    strict out-of-fold validation across unseen private splits.
   </p>
 
   <div class="two-col" style="margin-top:10px;">
     <div>
-      <div class="section-h"><span class="num">4.1</span><h2>HLBT Housing Prices &amp; HLBN Plants</h2><span class="rule"></span></div>
+      <div class="section-h"><span class="num">4.1</span><h2>HLBN Plants — 1<sup>st</sup> / 18 Teams</h2><span class="rule"></span></div>
       <div style="margin-top:6px;">
-        <div class="spec-row"><span class="k">HLBT Baku ML3 Housing</span><span class="v"><b style="color:var(--accent);">🥇 1<sup>st</sup> place (MAE)</b></span></div>
-        <div class="spec-row"><span class="k">HLBN Plants Competition</span><span class="v"><b style="color:var(--accent);">🥇 1<sup>st</sup> place</b></span></div>
-        <div class="spec-row"><span class="k">Housing Target</span><span class="v"><code>SalePrice</code> regression (Feb—Mar ’26)</span></div>
-        <div class="spec-row"><span class="k">Validation</span><span class="v">Stratified / K-Fold CV</span></div>
+        <div class="spec-row"><span class="k">Final Standing</span><span class="v"><b style="color:var(--accent);">🥇 1<sup>st</sup> / 18</b> (+0.030 over 2<sup>nd</sup>)</span></div>
+        <div class="spec-row"><span class="k">Macro F1 (Test)</span><span class="v"><b>0.95648</b> private · <b>0.99466</b> public</span></div>
+        <div class="spec-row"><span class="k">5-Fold OOF F1</span><span class="v"><b>0.8153</b> overall (mean 0.8137 ± 0.0226)</span></div>
+        <div class="spec-row"><span class="k">Backbone &amp; TTA</span><span class="v">EfficientNetV2-S · 5 folds × 3 TTA = 15</span></div>
       </div>
 
       <div class="callout" style="margin-top:10px;">
-        <div class="lbl">Approach</div>
+        <div class="lbl">Vision Pipeline Highlights</div>
         <p>
-          Domain interaction features, target-aware encodings, log-transformed
-          targets for skew stabilization, gradient-boosted ensembles (XGBoost /
-          LightGBM) validated under strict out-of-fold CV, plus tail residual
-          error analysis to protect MAE.
+          Trained over 21 verified plant disease classes (filtering sentinel folders
+          via <code>train_labels.csv</code>) with <code>TrivialAugmentWide</code>,
+          <code>RandomErasing</code>, MixUp/CutMix, AMP, and <code>OneCycleLR</code>
+          across 2,245 test images.
         </p>
       </div>
     </div>
 
     <div>
-      <div class="section-h"><span class="num">4.2</span><h2>HLBT Baku ML3 — TED</h2><span class="rule"></span></div>
+      <div class="section-h"><span class="num">4.2</span><h2>HLBT Housing (1<sup>st</sup>) &amp; TED (2 / 46)</h2><span class="rule"></span></div>
       <div style="margin-top:6px;">
-        <div class="spec-row"><span class="k">Task</span><span class="v">Probabilistic / views forecasting</span></div>
-        <div class="spec-row"><span class="k">Metric</span><span class="v">Mean Squared Log Error (MSLE)</span></div>
-        <div class="spec-row"><span class="k">Output</span><span class="v"><code>id, views</code> submission</span></div>
-        <div class="spec-row"><span class="k">Final Standing</span><span class="v"><b style="color:var(--accent);">🥈 Top 2</b></span></div>
+        <div class="spec-row"><span class="k">Housing Prices</span><span class="v"><b style="color:var(--accent);">🥇 1<sup>st</sup></b> · stacked GBDT + linear ($12,787)</span></div>
+        <div class="spec-row"><span class="k">TED Views (46 teams)</span><span class="v"><b style="color:var(--accent);">🥈 Top 2</b> · <b>0.03570</b> private MSLE</span></div>
+        <div class="spec-row"><span class="k">TED Calibration</span><span class="v">10-seed × 5-fold LightGBM + TabPFN v2</span></div>
+        <div class="spec-row"><span class="k">Graph Signal</span><span class="v"><code>related_talks</code> view lookup + adaptive α</span></div>
       </div>
 
-      <div class="section-h" style="margin-top:14px;"><span class="num">4.3</span><h2>Stack</h2><span class="rule"></span></div>
+      <div class="section-h" style="margin-top:12px;"><span class="num">4.3</span><h2>Stack &amp; Models</h2><span class="rule"></span></div>
       <ul class="bul">
-        <li>Python · pandas · NumPy · SciPy</li>
-        <li>PyTorch · TensorFlow/Keras · scikit-learn</li>
-        <li>XGBoost · LightGBM · Optuna HP tuning</li>
-        <li>Matplotlib / residual diagnostics &amp; K-Fold CV</li>
+        <li><b>Vision:</b> PyTorch, Torchvision <code>v2</code>, EfficientNetV2-S, 3× TTA</li>
+        <li><b>Tabular:</b> CatBoost, LightGBM, XGBoost, TabPFN v2, Ridge/Lasso/Huber</li>
+        <li><b>Validation:</b> Stratified &amp; 10-seed K-Fold CV, residual error analysis</li>
+        <li><b>Note:</b> Private competition rules restrict public notebook hosting on Kaggle</li>
       </ul>
     </div>
   </div>
